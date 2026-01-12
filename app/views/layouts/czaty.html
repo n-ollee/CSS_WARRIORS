@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLUSFLIX - Czaty grupowe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="font-medium">
+    <a href="#main-content" class="skip-to-content">Przejdź do treści</a>
+
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" role="button" tabindex="0" aria-label="PLUSFLIX - Strona główna">
+                    <div class="logo-icon" aria-hidden="true">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <h1>PLUSFLIX</h1>
+                </div>
+
+                <nav class="main-nav" role="navigation" aria-label="Główne menu">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-home"></i> Strona główna
+                    </a>
+                    <a href="ulubione.html" class="nav-link">
+                        <i class="fas fa-heart"></i> Ulubione
+                    </a>
+                    <a href="czaty.html" class="nav-link active">
+                        <i class="fas fa-comments"></i> Czaty
+                    </a>
+                </nav>
+
+                <div class="search-section">
+                    <div class="search-wrapper">
+                        <div class="search-icon" aria-hidden="true">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <input type="text" 
+                               class="search-input" 
+                               placeholder="Wyszukaj film i serial..."
+                               aria-label="Wyszukaj film i serial..."
+                               id="chat-search-input">
+                        <button class="clear-btn" aria-label="Wyczyść wyszukiwanie">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <div class="font-size-control" aria-label="Zmiana rozmiaru czcionki">
+                        <button class="font-btn" aria-label="Mała czcionka">A-</button>
+                        <button class="font-btn active" aria-label="Średnia czcionka">A</button>
+                        <button class="font-btn" aria-label="Duża czcionka">A+</button>
+                    </div>
+                    <button class="admin-btn" aria-label="Panel administratora">
+                        <i class="fas fa-user-cog"></i> Admin
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="container" role="main">
+        <section id="page-chat" class="page-content active">
+            <div class="hero chat-hero">
+                <div class="hero-bg"></div>
+                <div class="hero-content">
+                    <h2 class="hero-title">Czaty grupowe dla kinomaniaków</h2>
+                    <p class="hero-subtitle">Dołącz do dyskusji z innymi miłośnikami filmów, dziel się opiniami i odkrywaj nowe tytuły</p>
+                </div>
+            </div>
+
+            <div class="chat-container">
+                <div class="chat-sidebar">
+                    <div class="sidebar-header">
+                        <h3 class="chat-sidebar-title">
+                            <i class="fas fa-comments"></i> Czaty tematyczne
+                        </h3>
+                    </div>
+                    
+                    <div class="chat-room-list">
+                        <div class="chat-room-item active">
+                            <div class="chat-room-icon">
+                                <i class="fas fa-explosion"></i>
+                            </div>
+                            <div class="chat-room-info">
+                                <div class="chat-room-name">Fanatycy Akcji</div>
+                                <div class="chat-room-desc">Dyskusje o filmach akcji, wybuchach i pościgach</div>
+                                <div class="chat-room-stats">
+                                    <span class="room-stat"><i class="fas fa-message"></i> 128</span>
+                                    <span class="room-stat"><i class="fas fa-user"></i> 24</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-room-item">
+                            <div class="chat-room-icon">
+                                <i class="fas fa-laugh"></i>
+                            </div>
+                            <div class="chat-room-info">
+                                <div class="chat-room-name">Miłośnicy Komedii</div>
+                                <div class="chat-room-desc">Śmiejmy się razem!</div>
+                                <div class="chat-room-stats">
+                                    <span class="room-stat"><i class="fas fa-message"></i> 95</span>
+                                    <span class="room-stat"><i class="fas fa-user"></i> 18</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-room-item">
+                            <div class="chat-room-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="chat-room-info">
+                                <div class="chat-room-name"> Fani Sci-Fi</div>
+                                <div class="chat-room-desc">Kosmos, technologie, przyszłość</div>
+                                <div class="chat-room-stats">
+                                    <span class="room-stat"><i class="fas fa-message"></i> 156</span>
+                                    <span class="room-stat"><i class="fas fa-user"></i> 32</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-room-item">
+                            <div class="chat-room-icon">
+                                <i class="fas fa-masks-theater"></i>
+                            </div>
+                            <div class="chat-room-info">
+                                <div class="chat-room-name"> Koneserzy Dramatu</div>
+                                <div class="chat-room-desc">Głębokie dyskusje o filmach dramatycznych</div>
+                                <div class="chat-room-stats">
+                                    <span class="room-stat"><i class="fas fa-message"></i> 87</span>
+                                    <span class="room-stat"><i class="fas fa-user"></i> 15</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-room-item">
+                            <div class="chat-room-icon">
+                                <i class="fas fa-ghost"></i>
+                            </div>
+                            <div class="chat-room-info">
+                                <div class="chat-room-name"> Miłośnicy Horrorów</div>
+                                <div class="chat-room-desc">Dla tych, którzy lubią się bać</div>
+                                <div class="chat-room-stats">
+                                    <span class="room-stat"><i class="fas fa-message"></i> 112</span>
+                                    <span class="room-stat"><i class="fas fa-user"></i> 21</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-info">
+                        <p><i class="fas fa-info-circle"></i> Wybierz czat aby dołączyć do dyskusji</p>
+                        <p><small>Wszystkie wiadomości są publiczne i anonimowe</small></p>
+                        <p><small><i class="fas fa-user-friends"></i> 110 użytkowników online</small></p>
+                    </div>
+                </div>
+
+                <div class="chat-main">
+                    <div class="chat-header">
+                        <div class="chat-header-left">
+                            <h3 class="chat-header-title">
+                                <i class="fas fa-explosion"></i> 🎬 Fanatycy Akcji
+                            </h3>
+                            <div class="chat-room-stats">
+                                <span class="message-count"><i class="fas fa-message"></i> 128 wiadomości</span>
+                                <span class="active-users"><i class="fas fa-user"></i> 24 aktywnych</span>
+                            </div>
+                        </div>
+                        <div class="chat-header-actions">
+                            <button class="chat-action-btn" aria-label="Powiadomienia czatu">
+                                <i class="fas fa-bell"></i>
+                            </button>
+                            <button class="chat-action-btn" aria-label="Zmień motyw">
+                                <i class="fas fa-moon" id="theme-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="chat-notice">
+                        <i class="fas fa-info-circle"></i> Czat grupowy – pisz anonimowo, szanuj innych użytkowników. Administrator moderuje treści.
+                    </div>
+
+                    <div class="chat-messages">
+                        <div class="welcome-message">
+                            <div class="message system">
+                                <div class="message-header">
+                                    <span class="message-author">System</span>
+                                    <span class="message-time">10:15</span>
+                                </div>
+                                <div class="message-text">
+                                    Witaj w pokoju "Fanatycy Akcji"! Rozmawiaj z innymi fanami filmów akcji.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="message">
+                            <div class="message-header">
+                                <span class="message-author">KinoManiak42</span>
+                                <span class="message-time">10:20</span>
+                            </div>
+                            <div class="message-text">
+                                Kto widział nowego "Mission: Impossible"? Efekty praktyczne są niesamowite!
+                            </div>
+                        </div>
+                        
+                        <div class="message">
+                            <div class="message-header">
+                                <span class="message-author">Akcjoner88</span>
+                                <span class="message-time">10:22</span>
+                            </div>
+                            <div class="message-text">
+                                Tom Cruise wciąż robi te wszystkie kaskaderskie wyczyny sam! Szacun.
+                            </div>
+                        </div>
+                        
+                        <div class="message own">
+                            <div class="message-header">
+                                <span class="message-author">Ty</span>
+                                <span class="message-time">10:25</span>
+                            </div>
+                            <div class="message-text">
+                                Polecam też "John Wick 4" - choreografia walk to mistrzostwo świata!
+                            </div>
+                        </div>
+                        
+                        <div class="message">
+                            <div class="message-header">
+                                <span class="message-author">Wybuchowiec</span>
+                                <span class="message-time">10:28</span>
+                            </div>
+                            <div class="message-text">
+                                A pamiętacie starego "Predatora" z Arnoldem? To był film akcji!
+                            </div>
+                        </div>
+                        
+                        <div class="message admin">
+                            <div class="message-header">
+                                <span class="message-author">Administrator 👑</span>
+                                <span class="message-time">10:30</span>
+                            </div>
+                            <div class="message-text">
+                                Przypominam o kulturze dyskusji. Używajmy odpowiedniego języka.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-area">
+                        <div class="user-info">
+                            <div class="user-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="user-details">
+                                <span class="user-name">Gość</span>
+                                <span class="user-status">Online</span>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-input-wrapper">
+                            <input type="text" 
+                                   class="chat-input" 
+                                   placeholder="Napisz wiadomość na czacie..."
+                                   aria-label="Wiadomość na czacie"
+                                   id="chat-input">
+                            <div class="chat-input-actions">
+                                <button class="chat-action-btn" aria-label="Emotikony">
+                                    <i class="fas fa-smile"></i>
+                                </button>
+                                <button class="send-message-btn" aria-label="Wyślij wiadomość">
+                                    <i class="fas fa-paper-plane"></i> Wyślij
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-options">
+                            <label class="chat-option">
+                                <input type="checkbox" checked>
+                                <i class="fas fa-arrow-down"></i> Auto-przewijanie
+                            </label>
+                            <button class="chat-scroll-btn">
+                                <i class="fas fa-arrow-down"></i> Na dół
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="admin-login-modal" class="admin-login-modal" role="dialog" aria-labelledby="admin-login-title" aria-hidden="true">
+        <div class="admin-login-content">
+            <h3 id="admin-login-title" class="admin-login-title">
+                <i class="fas fa-user-cog"></i> Logowanie administratora
+            </h3>
+            <form class="admin-login-form" id="admin-login-form">
+                <div class="form-group">
+                    <label for="admin-username" class="form-label">Login</label>
+                    <input type="text" id="admin-username" class="form-input" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="admin-password" class="form-label">Hasło</label>
+                    <input type="password" id="admin-password" class="form-input" required autocomplete="current-password">
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="remember-me">
+                        Zapamiętaj mnie
+                    </label>
+                </div>
+                <div class="admin-login-buttons">
+                    <button type="button" class="secondary-btn">
+                        <i class="fas fa-times"></i> Anuluj
+                    </button>
+                    <button type="submit" class="primary-btn">
+                        <i class="fas fa-sign-in-alt"></i> Zaloguj
+                    </button>
+                </div>
+                <div class="login-note">
+                    <i class="fas fa-info-circle"></i> Dostęp tylko dla uprawnionych administratorów
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="confirm-modal" class="confirm-modal" role="dialog" aria-hidden="true">
+        <div class="confirm-content">
+            <h3 class="confirm-title">Potwierdź akcję</h3>
+            <p class="confirm-message">Czy na pewno chcesz kontynuować?</p>
+            <div class="confirm-buttons">
+                <button class="secondary-btn" id="confirm-cancel">
+                    <i class="fas fa-times"></i> Anuluj
+                </button>
+                <button class="primary-btn" id="confirm-ok">
+                    <i class="fas fa-check"></i> Potwierdź
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- minimalny js tylko dla układu (póżniej go rozszerzymy i przeniesiemy do odpowiedniego pliku)-->
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+         
+            document.querySelectorAll('.chat-room-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    document.querySelectorAll('.chat-room-item').forEach(i => {
+                        i.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                
+                });
+            });
+            
+            document.querySelector('.chat-scroll-btn').addEventListener('click', function() {
+                const chatMessages = document.querySelector('.chat-messages');
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            });
+            
+            const themeBtn = document.getElementById('theme-icon');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', function() {
+                    const chatMain = document.querySelector('.chat-main');
+                    chatMain.classList.toggle('dark-theme');
+                    
+                    if (chatMain.classList.contains('dark-theme')) {
+                        this.className = 'fas fa-sun';
+                    } else {
+                        this.className = 'fas fa-moon';
+                    }
+                });
+            }
+            
+            const sendBtn = document.querySelector('.send-message-btn');
+            const chatInput = document.getElementById('chat-input');
+            
+            if (sendBtn && chatInput) {
+                sendBtn.addEventListener('click', function() {
+                    if (chatInput.value.trim()) {
+                        
+                        
+                        chatInput.value = '';
+                    }
+                });
+                
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        if (this.value.trim()) {
+                          
+                            this.value = '';
+                        }
+                    }
+                });
+            }
+            
+         
+            document.querySelectorAll('.font-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.font-btn').forEach(b => {
+                        b.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

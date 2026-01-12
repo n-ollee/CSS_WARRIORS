@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLUSFLIX - Panel Administratora: Moderacja czatu</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="font-medium">
+    <a href="#main-content" class="skip-to-content">Przejdź do treści</a>
+
+    <header class="header" role="banner">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo" onclick="location.href='index.html'" role="button" tabindex="0" aria-label="PLUSFLIX - Strona główna">
+                <div class="logo-icon" aria-hidden="true">
+                    <i class="fas fa-play"></i>
+                </div>
+                <h1>PLUSFLIX</h1>
+            </div>
+
+            <nav class="main-nav" role="navigation" aria-label="Główne menu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Strona główna
+                </a>
+                <a href="ulubione.html" class="nav-link">
+                    <i class="fas fa-heart"></i> Ulubione
+                </a>
+                <a href="czaty.html" class="nav-link">
+                    <i class="fas fa-comments"></i> Czaty
+                </a>
+                <a href="admin.html" class="nav-link">
+                    <i class="fas fa-user-cog"></i> Panel admina
+                </a>
+            </nav>
+            
+
+                <div class="search-section">
+                    <div class="search-wrapper">
+                        <div class="search-icon" aria-hidden="true">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <input type="text" 
+                               class="search-input" 
+                               placeholder="Wyszukaj film lub serial..."
+                               aria-label="Wyszukaj film lub serial">
+                        <button class="clear-btn" aria-label="Wyczyść wyszukiwanie">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <div class="font-size-control" aria-label="Zmiana rozmiaru czcionki">
+                        <button class="font-btn" aria-label="Mała czcionka">A-</button>
+                        <button class="font-btn active" aria-label="Średnia czcionka">A</button>
+                        <button class="font-btn" aria-label="Duża czcionka">A+</button>
+                    </div>
+                    <button class="admin-btn" aria-label="Panel administratora">
+                        <i class="fas fa-user-cog"></i> Admin
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="container" role="main">
+        <section class="page-content active">
+            <div class="admin-header">
+                <h2 class="admin-title">
+                    <i class="fas fa-user-cog"></i> Panel administratora - Moderacja czatu
+                </h2>
+                <div class="admin-actions">
+                    <span class="admin-status">
+                        <i class="fas fa-circle" style="color: #10b981"></i> Zalogowany jako administrator
+                    </span>
+                    <button class="admin-logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Wyloguj
+                    </button>
+                </div>
+            </div>
+
+            <div class="admin-tabs">
+                <button class="admin-tab" onclick="location.href='admin-filmy.html'">
+                     <i class="fas fa-film"></i> Filmy
+                </button>
+                <button class="admin-tab active" onclick="location.href='admin-komentarze.html'">
+                    <i class="fas fa-comment"></i> Komentarze
+                </button>
+                <button class="admin-tab">
+                    <i class="fas fa-comments"></i> Moderacja czatu
+                </button>
+                <button class="admin-tab" onclick="location.href='admin-ustawienia.html'">
+                    <i class="fas fa-cog"></i> Ustawienia
+                </button>
+            </div>
+                
+
+            <div class="admin-tab-content active">
+                <div class="admin-section">
+                    <h3 class="admin-section-title">
+                        <i class="fas fa-comment-slash"></i> Moderacja czatu
+                    </h3>
+                    <div class="chat-moderation">
+                        <div class="active-chats">
+                            <h4>
+                                <i class="fas fa-broadcast-tower"></i> Aktywne czaty
+                            </h4>
+                            <div>
+                                <div class="chat-room-item admin">
+                                    <div class="chat-room-name">
+                                        <i class="fas fa-explosion"></i> 🎬 Fanatycy Akcji
+                                        <span class="message-count">42 wiadomości</span>
+                                    </div>
+                                    <div class="last-message">
+                                        <strong>WesołyKinoman:</strong> Kto widział ostatni film Mission Impossible?
+                                    </div>
+                                    <div class="room-actions">
+                                        <button class="secondary-btn">
+                                            <i class="fas fa-comment"></i> Wejdź
+                                        </button>
+                                        <button class="action-btn delete">
+                                            <i class="fas fa-broom"></i> Wyczyść
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="chat-room-item admin">
+                                    <div class="chat-room-name">
+                                        <i class="fas fa-laugh"></i> 😂 Miłośnicy Komedii
+                                        <span class="message-count">28 wiadomości</span>
+                                    </div>
+                                    <div class="last-message">
+                                        <strong>Śmieszek:</strong> Polecacie jakieś nowe komedie?
+                                    </div>
+                                    <div class="room-actions">
+                                        <button class="secondary-btn">
+                                            <i class="fas fa-comment"></i> Wejdź
+                                        </button>
+                                        <button class="action-btn delete">
+                                            <i class="fas fa-broom"></i> Wyczyść
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="chat-room-item admin">
+                                    <div class="chat-room-name">
+                                        <i class="fas fa-robot"></i> 🚀 Fani Sci-Fi
+                                        <span class="message-count">56 wiadomości</span>
+                                    </div>
+                                    <div class="last-message">
+                                        <strong>KosmicznyFan:</strong> Dyskusja o nowym sezonie Star Trek
+                                    </div>
+                                    <div class="room-actions">
+                                        <button class="secondary-btn">
+                                            <i class="fas fa-comment"></i> Wejdź
+                                        </button>
+                                        <button class="action-btn delete">
+                                            <i class="fas fa-broom"></i> Wyczyść
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="chat-room-item admin">
+                                    <div class="chat-room-name">
+                                        <i class="fas fa-ghost"></i> 👻 Miłośnicy Horrorów
+                                        <span class="message-count">15 wiadomości</span>
+                                    </div>
+                                    <div class="last-message">
+                                        <strong>Strachliwy:</strong> Ostatni horror który was przeraził?
+                                    </div>
+                                    <div class="room-actions">
+                                        <button class="secondary-btn">
+                                            <i class="fas fa-comment"></i> Wejdź
+                                        </button>
+                                        <button class="action-btn delete">
+                                            <i class="fas fa-broom"></i> Wyczyść
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reported-messages">
+                            <h4>
+                                <i class="fas fa-flag"></i> Zgłoszone wiadomości
+                            </h4>
+                            <div>
+                                <div class="reported-message">
+                                    <div class="message-header">
+                                        <span class="message-author">AnonimowyUżytkownik</span>
+                                        <span class="message-time">14:30</span>
+                                    </div>
+                                    <div class="message-text">Ten film to totalna porażka, nie wiem jak można go polecać...</div>
+                                    <div class="report-reason">Powód zgłoszenia: Niewłaściwy język</div>
+                                    <div class="report-actions">
+                                        <button class="secondary-btn">
+                                            <i class="fas fa-check"></i> Odrzuć zgłoszenie
+                                        </button>
+                                        <button class="action-btn delete">
+                                            <i class="fas fa-trash"></i> Usuń wiadomość
+                                        </button>
+                                        <button class="action-btn warning">
+                                            <i class="fas fa-ban"></i> Zablokuj użytkownika
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="reported-message">
+                                    <div class="message-header">
+                                        <span class="message-author">KrytykFilmowy</span>
+                                        <span class="message-time">13:45</span>
+                                    </div>
+                                    <div class="message-text">Spoiler: w finale główny bohater umiera...</div>
+                                    <div class="report-reason">Powód zgłoszenia: Spoiler bez ostrzeżenia</div>
+                                    <div class="report-actions">
+                                        <button class="secondary-btn">
+                                            <i class="fas fa-check"></i> Odrzuć zgłoszenie
+                                        </button>
+                                        <button class="action-btn delete">
+                                            <i class="fas fa-trash"></i> Usuń wiadomość
+                                        </button>
+                                        <button class="action-btn warning">
+                                            <i class="fas fa-exclamation-triangle"></i> Ostrzeż użytkownika
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="reported-message">
+                                    <div class="message-header">
+                                        <span class="message-author">TrollInternetowy</span>
+                                        <span class="message-time">12:20</span>
+                                    </div>
+                                    <div class="message-text">Wszystkie filmy na tej platformie są beznadziejne!</div>
+                                    <div class="report-reason">Powód zgłoszenia: Trollowanie</div>
+                                    <div class="report-actions">
+                                        <button class="secondary-btn">
+                                            <i class="fas fa-check"></i> Odrzuć zgłoszenie
+                                        </button>
+                                        <button class="action-btn delete">
+                                            <i class="fas fa-trash"></i> Usuń wiadomość
+                                        </button>
+                                        <button class="action-btn warning">
+                                            <i class="fas fa-ban"></i> Zablokuj użytkownika
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.querySelector('.logo').addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

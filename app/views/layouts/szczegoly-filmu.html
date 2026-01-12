@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLUSFLIX - Szczegóły filmu: Incepcja</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="font-medium">
+    <a href="#main-content" class="skip-to-content">Przejdź do treści</a>
+    
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo" aria-label="Strona główna PLUSFLIX">
+                    <div class="logo-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h1>PLUSFLIX</h1>
+                </a>
+                
+                <nav class="main-nav" aria-label="Główne menu">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-home"></i> Strona główna
+                    </a>
+                    <a href="search.html" class="nav-link">
+                        <i class="fas fa-search"></i> Wyszukiwanie
+                    </a>
+                    <a href="favorites.html" class="nav-link">
+                        <i class="fas fa-heart"></i> Ulubione
+                    </a>
+                    <a href="chat.html" class="nav-link">
+                        <i class="fas fa-comments"></i> Czaty
+                    </a>
+                </nav>
+                
+                <div class="search-section">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" 
+                               class="search-input" 
+                               placeholder="Szukaj filmów i seriali..."
+                               aria-label="Wyszukaj film lub serial">
+                        <button class="clear-btn" aria-label="Wyczyść wyszukiwanie">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="font-size-control" aria-label="Rozmiar czcionki">
+                        <button class="font-btn" aria-label="Mała czcionka">A</button>
+                        <button class="font-btn active" aria-label="Średnia czcionka">A</button>
+                        <button class="font-btn" aria-label="Duża czcionka">A</button>
+                    </div>
+                    <button class="admin-btn" aria-label="Panel administratora">
+                        <i class="fas fa-user-shield"></i> Admin
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="container">
+        <div class="modal active" id="movie-modal" role="dialog" aria-labelledby="modal-title" aria-hidden="false">
+            <div class="modal-content">
+                <button class="modal-close" aria-label="Zamknij okno">
+                    <i class="fas fa-times"></i>
+                </button>
+                
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <div class="movie-details-header">
+                            <div class="movie-poster-large">
+                                <img src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg" 
+                                     alt="Plakat filmu Incepcja" 
+                                     title="Incepcja (2010)">
+                            </div>
+                            
+                            <div class="movie-info-detailed">
+                                <h3 class="movie-title-detailed">Incepcja</h3>
+                                
+                                <div class="movie-meta-detailed">
+                                    <span class="meta-item"><i class="fas fa-calendar-alt"></i> 2010</span>
+                                    <span class="meta-item"><i class="fas fa-clock"></i> 2h 28min</span>
+                                    <span class="meta-item"><i class="fas fa-video"></i> Film</span>
+                                    <span class="meta-item"><i class="fas fa-star"></i> 8.8/10</span>
+                                </div>
+                                
+                                <div class="movie-cast-crew">
+                                    <div class="cast-crew-item">
+                                        <span class="cast-crew-label">Reżyser:</span>
+                                        <span class="cast-crew-value">Christopher Nolan</span>
+                                    </div>
+                                    <div class="cast-crew-item">
+                                        <span class="cast-crew-label">Obsada:</span>
+                                        <span class="cast-crew-value">Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Tom Hardy</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="movie-description">
+                                    <h4 class="description-title">Opis fabuły</h4>
+                                    <p>
+                                        Złodziej, który potrafi wejść do snu ofiary, aby wykraść jej tajemnice, otrzymuje zadanie wszczepienia myśli. 
+                                        Cobb (Leonardo DiCaprio) jest specjalistą od kradzieży najcenniejszych tajemnic ze snów innych ludzi. 
+                                        Jego umiejętności uczyniły go poszukiwanym włamywaczem, ale także pozbawiły go wszystkiego, co kochał. 
+                                        Teraz ma szansę na odkupienie. Zamiast dokonać kradzieży, musi dokonać czegoś niemożliwego: incepcji, 
+                                        czyli wszczepienia myśli.
+                                    </p>
+                                </div>
+                                
+                                
+                                <div class="movie-action-buttons">
+                                    <!-- Przycisk ulubionych WYSZ-3.1 -->
+                                    <button class="favorite-btn" aria-label="Dodaj do ulubionych">
+                                        <i class="far fa-heart"></i> Dodaj do ulubionych
+                                    </button>
+                                    
+                                    <!-- Przycisk udostępniania WYSZ-1.5 -->
+                                    <button class="share-btn" aria-label="Udostępnij film">
+                                        <i class="fas fa-share-alt"></i> Udostępnij
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sekcja platform WYSZ-2.3 -->
+                    <div class="modal-section">
+                        <h3 class="modal-section-title">
+                            <i class="fas fa-tv"></i> Dostępne na platformach
+                        </h3>
+                        
+                        <div class="platforms-grid" id="platforms-grid">
+                           
+                            <div class="platform-item netflix-item" role="button" tabindex="0" aria-label="Dostępny na Netflix">
+                                <div class="platform-logo">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" 
+                                         alt="Netflix" 
+                                         style="width: 40px; height: 40px;">
+                                </div>
+                                <div class="platform-name">Netflix</div>
+                            </div>
+                            
+                            <div class="platform-item hbo-item" role="button" tabindex="0" aria-label="Dostępny na HBO Max">
+                                <div class="platform-logo">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg" 
+                                         alt="HBO Max" 
+                                         style="width: 40px; height: 40px;">
+                                </div>
+                                <div class="platform-name">HBO Max</div>
+                            </div>
+                            
+                            <div class="platform-item disney-item" role="button" tabindex="0" aria-label="Dostępny na Disney+">
+                                <div class="platform-logo">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" 
+                                         alt="Disney+" 
+                                         style="width: 40px; height: 40px;">
+                                </div>
+                                <div class="platform-name">Disney+</div>
+                            </div>
+                            
+                            <div class="platform-item amazon-item" role="button" tabindex="0" aria-label="Dostępny na Prime Video">
+                                <div class="platform-logo">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png" 
+                                         alt="Prime Video" 
+                                         style="width: 40px; height: 40px;">
+                                </div>
+                                <div class="platform-name">Prime Video</div>
+                            </div>
+                            
+                            <div class="platform-item apple-item" role="button" tabindex="0" aria-label="Dostępny na Apple TV+">
+                                <div class="platform-logo">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" 
+                                         alt="Apple TV+" 
+                                         style="width: 35px; height: 35px; background: white; border-radius: 50%; padding: 5px;">
+                                </div>
+                                <div class="platform-name">Apple TV+</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Komunikat o braku platform WYSZ-2.5  -->
+                        <div id="no-platforms" class="no-platforms" style="display: none;" aria-hidden="true">
+                            <i class="fas fa-exclamation-triangle"></i> 
+                            Brak informacji o dostępności na platformach streamingowych
+                        </div>
+                    </div>
+                    
+                    <!-- Sekcja ocen WYSZ-4.1, WYSZ-4.2 -->
+                    <div class="modal-section">
+                        <h3 class="modal-section-title">
+                            <i class="fas fa-star"></i> Oceny
+                        </h3>
+                        
+                        <div class="rating-section">
+                            <div class="rating-display">
+                                <div class="avg-rating">
+                                    <div class="avg-rating-value" id="avg-rating">4.8</div>
+                                    <div class="avg-rating-label">Średnia ocena</div>
+                                    <div class="avg-rating-count" id="rating-count">187 ocen</div>
+                                </div>
+                                
+                                <div class="rating-bars" id="rating-bars">
+                                    <div class="rating-bar">
+                                        <div class="rating-bar-label">
+                                            5 <i class="fas fa-star"></i>
+                                        </div>
+                                        <div class="rating-bar-fill">
+                                            <div class="rating-bar-progress" style="width: 65%" aria-label="65% użytkowników dało 5 gwiazdek"></div>
+                                        </div>
+                                        <div class="rating-bar-count">120</div>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <div class="rating-bar-label">
+                                            4 <i class="fas fa-star"></i>
+                                        </div>
+                                        <div class="rating-bar-fill">
+                                            <div class="rating-bar-progress" style="width: 24%" aria-label="24% użytkowników dało 4 gwiazdki"></div>
+                                        </div>
+                                        <div class="rating-bar-count">45</div>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <div class="rating-bar-label">
+                                            3 <i class="fas fa-star"></i>
+                                        </div>
+                                        <div class="rating-bar-fill">
+                                            <div class="rating-bar-progress" style="width: 8%" aria-label="8% użytkowników dało 3 gwiazdki"></div>
+                                        </div>
+                                        <div class="rating-bar-count">15</div>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <div class="rating-bar-label">
+                                            2 <i class="fas fa-star"></i>
+                                        </div>
+                                        <div class="rating-bar-fill">
+                                            <div class="rating-bar-progress" style="width: 3%" aria-label="3% użytkowników dało 2 gwiazdki"></div>
+                                        </div>
+                                        <div class="rating-bar-count">5</div>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <div class="rating-bar-label">
+                                            1 <i class="fas fa-star"></i>
+                                        </div>
+                                        <div class="rating-bar-fill">
+                                            <div class="rating-bar-progress" style="width: 1%" aria-label="1% użytkowników dało 1 gwiazdkę"></div>
+                                        </div>
+                                        <div class="rating-bar-count">2</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="user-rating">
+                                <div class="user-rating-label">Twoja ocena:</div>
+                                <div class="rating-input-wrapper">
+                                    <div class="stars" id="rating-stars" role="radiogroup" aria-label="Oceń film">
+                                        <div class="star filled" role="radio" aria-checked="true" tabindex="0" aria-label="2 gwiazdki">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <div class="star filled" role="radio" aria-checked="true" tabindex="0" aria-label="4 gwiazdki">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <div class="star filled" role="radio" aria-checked="true" tabindex="0" aria-label="6 gwiazdek">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <div class="star filled" role="radio" aria-checked="true" tabindex="0" aria-label="8 gwiazdek">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <div class="star" role="radio" aria-checked="false" tabindex="0" aria-label="10 gwiazdek">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="rating-slider-wrapper">
+                                        <input type="range" 
+                                               min="1" 
+                                               max="10" 
+                                               value="8" 
+                                               class="rating-slider" 
+                                               id="rating-slider"
+                                               aria-label="Wybierz ocenę od 1 do 10">
+                                        <div class="rating-value-display" id="rating-value" aria-live="polite">8.0</div>
+                                    </div>
+                                    
+                                    <button class="primary-btn" id="submit-rating-btn" aria-label="Zapisz swoją ocenę">
+                                        <i class="fas fa-star"></i> Zapisz ocenę
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sekcja komentarzy WYSZ-4.3, WYSZ-4.4 -->
+                    <div class="comments-section">
+                        <h3 class="modal-section-title">
+                            <i class="fas fa-comments"></i> Komentarze
+                            <span class="comments-count" id="comments-count" aria-live="polite">(5)</span>
+                        </h3>
+                        
+                        <form class="comment-form" id="comment-form">
+                            <textarea class="comment-textarea" 
+                                      placeholder="Napisz komentarz..."
+                                      aria-label="Treść komentarza"
+                                      id="comment-text"
+                                      maxlength="500"
+                                      rows="4"></textarea>
+                            <div class="comment-options">
+                                <div class="comment-options-left">
+                                    <!-- Checkbox spoilerów WYSZ-4.4 -->
+                                    <label class="spoiler-checkbox">
+                                        <input type="checkbox" id="spoiler-checkbox" aria-label="Zaznacz jeśli komentarz zawiera spoilery">
+                                        <i class="fas fa-eye-slash"></i> Zawiera spoilery
+                                    </label>
+                                    <span class="char-count" id="char-count" aria-live="polite">0/500</span>
+                                </div>
+                                <button type="button" class="primary-btn" id="submit-comment-btn" aria-label="Dodaj komentarz">
+                                    <i class="fas fa-paper-plane"></i> Dodaj komentarz
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div class="comments-list" id="comments-list">
+                         
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <div class="comment-author">
+                                        <i class="fas fa-user"></i> WesołyKinoman
+                                    </div>
+                                    <div class="comment-date">15.03.2024, 14:30</div>
+                                </div>
+                                <div class="comment-text">
+                                    Niesamowity film! Koniec był zaskakujący, nie spodziewałem się takiego zwrotu akcji. Nolan to geniusz!
+                                </div>
+                            </div>
+                            
+                            <!-- Komentarz ze spoilerami WYSZ-4.4 -->
+                            <div class="comment spoiler">
+                                <div class="spoiler-warning" aria-label="Uwaga: komentarz zawiera spoilery">
+                                    <i class="fas fa-eye-slash"></i> UWAGA: Ten komentarz zawiera spoilery!
+                                </div>
+                                <div class="comment-header">
+                                    <div class="comment-author">
+                                        <i class="fas fa-user"></i> FanSciFi
+                                    </div>
+                                    <div class="comment-date">14.03.2024, 21:15</div>
+                                </div>
+                                <div class="comment-text">
+                                    Kiedy Cobb sprawdza czy wirujący bączek się zatrzyma... genialna scena! Cały film to majstersztyk.
+                                </div>
+                            </div>
+                            
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <div class="comment-author">
+                                        <i class="fas fa-user"></i> KrytykFilmowy
+                                    </div>
+                                    <div class="comment-date">13.03.2024, 10:45</div>
+                                </div>
+                                <div class="comment-text">
+                                    Efekty specjalne na najwyższym poziomie. Muzyka Hansa Zimmera doskonale komponuje się z napięciem filmu.
+                                </div>
+                            </div>
+                            
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <div class="comment-author">
+                                        <i class="fas fa-user"></i> NowyOglądacz
+                                    </div>
+                                    <div class="comment-date">12.03.2024, 18:20</div>
+                                </div>
+                                <div class="comment-text">
+                                    Pierwszy raz oglądałem i muszę przyznać, że to jeden z najlepszych filmów jakie widziałem. Fabuła trzyma w napięciu do samego końca.
+                                </div>
+                            </div>
+                            
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <div class="comment-author">
+                                        <i class="fas fa-user"></i> MiłośnikKina
+                                    </div>
+                                    <div class="comment-date">11.03.2024, 09:15</div>
+                                </div>
+                                <div class="comment-text">
+                                    Leonardo DiCaprio w roli Cobba to jeden z jego najlepszych występów. Aktorstwo na najwyższym poziomie!
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="comments-empty" id="comments-empty" style="display: none;" aria-hidden="true">
+                            <i class="fas fa-comment-slash"></i>
+                            <p>Brak komentarzy. Bądź pierwszy który skomentuje!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <style>
+        .modal-body {
+            padding-top: 0;
+        }
+        
+        .modal-section:first-child {
+            margin-top: 0;
+            padding-top: 0;
+        }
+        
+        .movie-details-header {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            padding-top: 1rem;
+        }
+        
+        .movie-poster-large {
+            flex: 0 0 250px;
+            max-width: 100%;
+        }
+        
+        .movie-poster-large img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--border-color);
+        }
+        
+        .movie-info-detailed {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .movie-title-detailed {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .movie-meta-detailed {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        
+        .meta-item i {
+            color: var(--primary-color);
+            width: 20px;
+            text-align: center;
+        }
+        
+        .movie-cast-crew {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: rgba(42, 42, 42, 0.5);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+        }
+        
+        .cast-crew-item {
+            display: flex;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .cast-crew-label {
+            font-weight: 600;
+            color: var(--primary-color);
+            min-width: 80px;
+        }
+        
+        .cast-crew-value {
+            color: var(--text-secondary);
+            flex: 1;
+        }
+        
+        .movie-description {
+            margin-bottom: 1.5rem;
+        }
+        
+        .description-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+        
+        .movie-action-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .favorite-btn {
+            background-color: rgba(42, 42, 42, 0.8);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .favorite-btn:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(229, 9, 20, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .favorite-btn.active {
+            background-color: rgba(229, 9, 20, 0.2);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .share-btn {
+            background-color: rgba(42, 42, 42, 0.8);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .share-btn:hover {
+            border-color: var(--accent-cool);
+            background-color: rgba(109, 142, 160, 0.1);
+            color: var(--accent-cool);
+        }
+        
+        .platform-item {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .platform-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .platform-item:hover::after {
+            left: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .movie-details-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding-top: 0;
+            }
+            
+            .movie-poster-large {
+                flex: 0 0 auto;
+                max-width: 250px;
+            }
+            
+            .movie-meta-detailed {
+                justify-content: center;
+            }
+            
+            .cast-crew-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.25rem;
+            }
+            
+            .cast-crew-label {
+                min-width: auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .movie-title-detailed {
+                font-size: 2rem;
+            }
+            
+            .movie-meta-detailed {
+                gap: 1rem;
+            }
+            
+            .movie-action-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .favorite-btn,
+            .share-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</body>
+</html>

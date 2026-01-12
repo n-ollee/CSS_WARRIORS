@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLUSFLIX - Panel administratora</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="font-medium">
+    <div id="admin-login-modal" class="admin-login-modal active">
+        <div class="admin-login-content">
+            <h3 class="admin-login-title">
+                <i class="fas fa-user-cog"></i> Logowanie administratora
+            </h3>
+            <form class="admin-login-form" id="admin-login-form" onsubmit="loginAdmin(event)">
+                <div class="form-group">
+                    <label for="admin-username" class="form-label">Login</label>
+                    <input type="text" id="admin-username" class="form-input" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="admin-password" class="form-label">Hasło</label>
+                    <input type="password" id="admin-password" class="form-input" required autocomplete="current-password">
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="remember-me">
+                        Zapamiętaj mnie
+                    </label>
+                </div>
+                <div class="admin-login-buttons">
+                    <button type="button" class="secondary-btn" onclick="location.href='index.html'">
+                        <i class="fas fa-times"></i> Anuluj
+                    </button>
+                    <button type="submit" class="primary-btn">
+                        <i class="fas fa-sign-in-alt"></i> Zaloguj
+                    </button>
+                </div>
+                <div class="login-note">
+                    <i class="fas fa-info-circle"></i> Dostęp tylko dla uprawnionych administratorów
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="admin-panel" style="display: none;">
+        <header class="header" role="banner">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo" onclick="location.href='index.html'" role="button" tabindex="0" aria-label="PLUSFLIX - Strona główna">
+                        <div class="logo-icon" aria-hidden="true">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <h1>PLUSFLIX Admin</h1>
+                    </div>
+
+                    <nav class="main-nav" role="navigation" aria-label="Główne menu">
+                        <a href="index.html" class="nav-link">
+                            <i class="fas fa-home"></i> Strona główna
+                        </a>
+                        <a href="ulubione.html" class="nav-link">
+                            <i class="fas fa-heart"></i> Ulubione
+                        </a>
+                        <a href="czaty.html" class="nav-link">
+                            <i class="fas fa-comments"></i> Czaty
+                        </a>
+                    </nav>
+
+                    <div class="header-actions">
+                        <span class="admin-status">
+                            <i class="fas fa-circle"></i> Administrator
+                        </span>
+                        <button class="admin-logout-btn" onclick="logoutAdmin()">
+                            <i class="fas fa-sign-out-alt"></i> Wyloguj
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="container admin-panel active" role="main">
+            <div class="admin-header">
+                <h2 class="admin-title">
+                    <i class="fas fa-user-cog"></i> Panel administratora
+                </h2>
+                <div class="admin-actions">
+                    <span class="admin-status" id="admin-status">
+                        <i class="fas fa-circle"></i> Zalogowany
+                    </span>
+                    <button class="admin-logout-btn" onclick="logoutAdmin()">
+                        <i class="fas fa-sign-out-alt"></i> Wyloguj
+                    </button>
+                </div>
+            </div>
+
+            <div class="admin-tabs">
+                <button class="admin-tab active" onclick="showAdminTab('movies')">
+                    <i class="fas fa-film"></i> Filmy
+                </button>
+                <button class="admin-tab" onclick="showAdminTab('comments')">
+                    <i class="fas fa-comment"></i> Komentarze
+                </button>
+                <button class="admin-tab" onclick="showAdminTab('chat-mods')">
+                    <i class="fas fa-comments"></i> Moderacja czatu
+                </button>
+                <button class="admin-tab" onclick="showAdminTab('settings')">
+                    <i class="fas fa-cog"></i> Ustawienia
+                </button>
+            </div>
+
+            <!-- Zawartość panelu admina (identyczna jak w index.html) -->
+            <!-- Tutaj można wkleić całą sekcję #page-admin z index.html -->
+        </main>
+    </div>
+
+    <script>
+        function loginAdmin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('admin-username').value;
+            const password = document.getElementById('admin-password').value;
+            
+            // Prosta walidacja - w rzeczywistej aplikacji byłoby to połączenie z backendem
+            if (username === 'admin' && password === 'admin123') {
+                document.getElementById('admin-login-modal').style.display = 'none';
+                document.getElementById('admin-panel').style.display = 'block';
+                
+                if (document.getElementById('remember-me').checked) {
+                    localStorage.setItem('admin_logged_in', 'true');
+                }
+            } else {
+                alert('Nieprawidłowy login lub hasło!');
+            }
+        }
+
+        function logoutAdmin() {
+            if (confirm('Czy na pewno chcesz się wylogować?')) {
+                localStorage.removeItem('admin_logged_in');
+                location.href = 'index.html';
+            }
+        }
+
+        // Sprawdź czy admin jest już zalogowany
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('admin_logged_in') === 'true') {
+                document.getElementById('admin-login-modal').style.display = 'none';
+                document.getElementById('admin-panel').style.display = 'block';
+            }
+        });
+    </script>
+   

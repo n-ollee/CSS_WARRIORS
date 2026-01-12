@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLUSFLIX - Wyszukiwarka Filmów i Seriali</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="font-medium">
+    <a href="#main-content" class="skip-to-content">Przejdź do treści</a>
+
+  <header class="header" role="banner">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo" onclick="location.href='index.html'" role="button" tabindex="0" aria-label="PLUSFLIX - Strona główna">
+                <div class="logo-icon" aria-hidden="true">
+                    <i class="fas fa-play"></i>
+                </div>
+                <h1>PLUSFLIX</h1>
+            </div>
+
+            <nav class="main-nav" role="navigation" aria-label="Główne menu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Strona główna
+                </a>
+                <a href="ulubione.html" class="nav-link">
+                    <i class="fas fa-heart"></i> Ulubione
+                </a>
+                <a href="czaty.html" class="nav-link">
+                    <i class="fas fa-comments"></i> Czaty
+                </a>
+                </nav>
+
+                <div class="search-section">
+                    <div class="search-wrapper">
+                        <div class="search-icon" aria-hidden="true">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <input type="text" 
+                               class="search-input" 
+                               placeholder="Wyszukaj film lub serial..."
+                               aria-label="Wyszukaj film lub serial"
+                               id="search-input">
+                        <button class="clear-btn" onclick="clearSearch()" aria-label="Wyczyść wyszukiwanie">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <div class="font-size-control" aria-label="Zmiana rozmiaru czcionki">
+                        <button class="font-btn" onclick="setFontSize('small')" aria-label="Mała czcionka">A-</button>
+                        <button class="font-btn active" onclick="setFontSize('medium')" aria-label="Średnia czcionka">A</button>
+                        <button class="font-btn" onclick="setFontSize('large')" aria-label="Duża czcionka">A+</button>
+                    </div>
+                    <button class="admin-btn" onclick="showAdminLogin()" aria-label="Panel administratora">
+                        <i class="fas fa-user-cog"></i> Admin
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="container" role="main">
+        <section id="page-home" class="page-content active">
+            <div class="hero">
+                <div class="hero-bg"></div>
+                <div class="hero-content">
+                    <h2 class="hero-title">Każdy seans zaczyna się od dobrej rekomendacji</h2>
+                    <p class="hero-subtitle">Poznaj tysiące filmów i seriali, sprawdź gdzie je obejrzeć i wymieniaj się opiniami z innymi pasjonatami kina</p>
+                </div>
+            </div>
+
+            <div class="filters-section">
+                <h3 class="filters-title"><i class="fas fa-filter"></i> Filtruj wyniki</h3>
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label class="filter-label">
+                            <i class="fas fa-tv"></i> Platformy streamingowe
+                        </label>
+                        <div class="filter-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="platform" value="netflix" onchange="updateFilters()">
+                                <div class="platform-logo">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" style="width: 24px; height: 24px;">
+                                </div>
+                                Netflix
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="platform" value="hbo" onchange="updateFilters()">
+                                <div class="platform-logo">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg" alt="HBO Max" style="width: 24px; height: 24px;">
+                                </div>
+                                HBO Max
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="platform" value="disney" onchange="updateFilters()">
+                                <div class="platform-logo">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney+" style="width: 24px; height: 24px;">
+                                </div>
+                                Disney+
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="platform" value="amazon" onchange="updateFilters()">
+                                <div class="platform-logo">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png" alt="Prime Video" style="width: 24px; height: 24px; background: white; padding: 2px; border-radius: 3px;">
+                                </div>
+                                Prime Video
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="platform" value="apple" onchange="updateFilters()">
+                                <div class="platform-logo">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple TV+" style="width: 20px; height: 20px; background: white; padding: 2px; border-radius: 50%;">
+                                </div>
+                                Apple TV+
+                            </label>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">
+                            <i class="fas fa-film"></i> Gatunki
+                        </label>
+                        <div class="filter-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="genre" value="action" onchange="updateFilters()">
+                                <i class="fas fa-explosion"></i> Akcja
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="genre" value="comedy" onchange="updateFilters()">
+                                <i class="fas fa-laugh"></i> Komedia
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="genre" value="drama" onchange="updateFilters()">
+                                <i class="fas fa-masks-theater"></i> Dramat
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="genre" value="sci-fi" onchange="updateFilters()">
+                                <i class="fas fa-robot"></i> Sci-Fi
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="genre" value="thriller" onchange="updateFilters()">
+                                <i class="fas fa-suspense"></i> Thriller
+                            </label>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">
+                            <i class="fas fa-star"></i> Minimalna ocena
+                        </label>
+                        <div class="filter-options">
+                            <label class="checkbox-label">
+                                <input type="radio" name="min-rating" value="0" checked onchange="updateFilters()">
+                                <span class="rating-stars">
+                                    <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                                </span>
+                                Dowolna ocena
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="radio" name="min-rating" value="5" onchange="updateFilters()">
+                                <span class="rating-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </span>
+                                5 gwiazdek
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="radio" name="min-rating" value="4" onchange="updateFilters()">
+                                <span class="rating-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                </span>
+                                4+ gwiazdki
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="radio" name="min-rating" value="3" onchange="updateFilters()">
+                                <span class="rating-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                                </span>
+                                3+ gwiazdki
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="radio" name="min-rating" value="2" onchange="updateFilters()">
+                                <span class="rating-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                                </span>
+                                2+ gwiazdki
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="radio" name="min-rating" value="1" onchange="updateFilters()">
+                                <span class="rating-stars">
+                                    <i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                                </span>
+                                1+ gwiazdka
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-actions">
+                    <button class="filter-btn secondary" onclick="clearAllFilters()">
+                        <i class="fas fa-broom"></i> Wyczyść filtry
+                    </button>
+                    <button class="filter-btn primary" onclick="applyFilters()">
+                        <i class="fas fa-check"></i> Zastosuj filtry
+                    </button>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <div class="section-header">
+                    <h4 class="section-title">
+                        <i class="fas fa-film"></i> Najnowsze i najpopularniejsze produkcje
+                    </h4>
+                    <div class="section-actions">
+                        <span class="results-count">Znaleziono <span id="results-count">12</span> filmów</span>
+                        <button class="share-btn" onclick="shareResults()" aria-label="Udostępnij wyniki">
+                            <i class="fas fa-share-alt"></i> Udostępnij
+                        </button>
+                    </div>
+                </div>
+
+                <div id="movies-grid" class="movies-grid">
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOxBVgSS0x9W7XzQS6o3_R35wZuBqOyUU9DA&s" alt="Dune 2">
+                            <div class="movie-overlay">
+                                <div class="overlay-actions">
+                                    <button class="overlay-btn" onclick="toggleFavorite(this)">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="overlay-btn" onclick="openMovieModal(1)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="rating-badge">
+                                <i class="fas fa-star"></i> 8.7
+                            </div>
+                            <div class="streaming-services">
+                                <span class="service-badge netflix-badge">N</span>
+                                <span class="service-badge hbo-badge">HBO</span>
+                            </div>
+                        </div>
+                        <div class="movie-info">
+                            <h3 class="movie-title">Dune: Part Two</h3>
+                            <div class="movie-meta">
+                                <span class="movie-year">2024</span>
+                                <span class="movie-genre">Sci-Fi, Akcja</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg" alt="Ojciec Chrzestny">
+                            <div class="movie-overlay">
+                                <div class="overlay-actions">
+                                    <button class="overlay-btn" onclick="toggleFavorite(this)">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="overlay-btn" onclick="openMovieModal(2)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="rating-badge">
+                                <i class="fas fa-star"></i> 9.2
+                            </div>
+                            <div class="streaming-services">
+                                <span class="service-badge netflix-badge">N</span>
+                                <span class="service-badge amazon-badge">PV</span>
+                            </div>
+                        </div>
+                        <div class="movie-info">
+                            <h3 class="movie-title">Ojciec Chrzestny</h3>
+                            <div class="movie-meta">
+                                <span class="movie-year">1972</span>
+                                <span class="movie-genre">Dramat, Kryminał</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg" alt="Mroczny Rycerz">
+                            <div class="movie-overlay">
+                                <div class="overlay-actions">
+                                    <button class="overlay-btn" onclick="toggleFavorite(this)">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="overlay-btn" onclick="openMovieModal(3)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="rating-badge">
+                                <i class="fas fa-star"></i> 9.0
+                            </div>
+                            <div class="streaming-services">
+                                <span class="service-badge hbo-badge">HBO</span>
+                                <span class="service-badge disney-badge">D+</span>
+                            </div>
+                        </div>
+                        <div class="movie-info">
+                            <h3 class="movie-title">Mroczny Rycerz</h3>
+                            <div class="movie-meta">
+                                <span class="movie-year">2008</span>
+                                <span class="movie-genre">Akcja, Kryminał</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg" alt="Forrest Gump">
+                            <div class="movie-overlay">
+                                <div class="overlay-actions">
+                                    <button class="overlay-btn" onclick="toggleFavorite(this)">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="overlay-btn" onclick="openMovieModal(4)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="rating-badge">
+                                <i class="fas fa-star"></i> 8.8
+                            </div>
+                            <div class="streaming-services">
+                                <span class="service-badge netflix-badge">N</span>
+                                <span class="service-badge apple-badge">A+</span>
+                            </div>
+                        </div>
+                        <div class="movie-info">
+                            <h3 class="movie-title">Forrest Gump</h3>
+                            <div class="movie-meta">
+                                <span class="movie-year">1994</span>
+                                <span class="movie-genre">Dramat, Romans</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://m.media-amazon.com/images/M/MV5BMDliMmNhNDEtODUyOS00MjNlLTgxODEtN2U3NzIxMGVkZTA1L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg" alt="Gladiator">
+                            <div class="movie-overlay">
+                                <div class="overlay-actions">
+                                    <button class="overlay-btn" onclick="toggleFavorite(this)">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="overlay-btn" onclick="openMovieModal(5)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="rating-badge">
+                                <i class="fas fa-star"></i> 8.5
+                            </div>
+                            <div class="streaming-services">
+                                <span class="service-badge netflix-badge">N</span>
+                                <span class="service-badge amazon-badge">PV</span>
+                            </div>
+                        </div>
+                        <div class="movie-info">
+                            <h3 class="movie-title">Gladiator</h3>
+                            <div class="movie-meta">
+                                <span class="movie-year">2000</span>
+                                <span class="movie-genre">Akcja, Dramat</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="data:image/jpeg;base64,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" alt="Interstellar">
+                            <div class="movie-overlay">
+                                <div class="overlay-actions">
+                                    <button class="overlay-btn" onclick="toggleFavorite(this)">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="overlay-btn" onclick="openMovieModal(6)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="rating-badge">
+                                <i class="fas fa-star"></i> 8.6
+                            </div>
+                            <div class="streaming-services">
+                                <span class="service-badge netflix-badge">N</span>
+                                <span class="service-badge hbo-badge">HBO</span>
+                            </div>
+                        </div>
+                        <div class="movie-info">
+                            <h3 class="movie-title">Interstellar</h3>
+                            <div class="movie-meta">
+                                <span class="movie-year">2014</span>
+                                <span class="movie-genre">Sci-Fi, Dramat</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg" alt="Pulp Fiction">
+                            <div class="movie-overlay">
+                                <div class="overlay-actions">
+                                    <button class="overlay-btn" onclick="toggleFavorite(this)">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="overlay-btn" onclick="openMovieModal(7)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="rating-badge">
+                                <i class="fas fa-star"></i> 8.9
+                            </div>
+                            <div class="streaming-services">
+                                <span class="service-badge hbo-badge">HBO</span>
+                                <span class="service-badge disney-badge">D+</span>
+                            </div>
+                        </div>
+                        <div class="movie-info">
+                            <h3 class="movie-title">Pulp Fiction</h3>
+                            <div class="movie-meta">
+                                <span class="movie-year">1994</span>
+                                <span class="movie-genre">Kryminał, Dramat</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://m.media-amazon.com/images/M/MV5BMmEzNTkxYjQtZTc0MC00YTVjLTg5ZTEtZWMwOWVlYzY0NWIwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg" alt="Fight Club">
+                            <div class="movie-overlay">
+                                <div class="overlay-actions">
+                                    <button class="overlay-btn" onclick="toggleFavorite(this)">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="overlay-btn" onclick="openMovieModal(8)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="rating-badge">
+                                <i class="fas fa-star"></i> 8.8
+                            </div>
+                            <div class="streaming-services">
+                                <span class="service-badge netflix-badge">N</span>
+                                <span class="service-badge amazon-badge">PV</span>
+                            </div>
+                        </div>
+                        <div class="movie-info">
+                            <h3 class="movie-title">Fight Club</h3>
+                            <div class="movie-meta">
+                                <span class="movie-year">1999</span>
+                                <span class="movie-genre">Dramat</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg" alt="Incepcja">
+                            <div class="movie-overlay">
+                                <div class="overlay-actions">
+                                    <button class="overlay-btn" onclick="toggleFavorite(this)">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="overlay-btn" onclick="openMovieModal(9)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="rating-badge">
+                                <i class="fas fa-star"></i> 8.8
+                            </div>
+                            <div class="streaming-services">
+                                <span class="service-badge netflix-badge">N</span>
+                                <span class="service-badge hbo-badge">HBO</span>
+                            </div>
+                        </div>
+                        <div class="movie-info">
+                            <h3 class="movie-title">Incepcja</h3>
+                            <div class="movie-meta">
+                                <span class="movie-year">2010</span>
+                                <span class="movie-genre">Sci-Fi, Akcja</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="data:image/jpeg;base64,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" alt="Mroczny Rycerz powstaje">
+                            <div class="movie-overlay">
+                                <div class="overlay-actions">
+                                    <button class="overlay-btn" onclick="toggleFavorite(this)">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="overlay-btn" onclick="openMovieModal(10)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="rating-badge">
+                                <i class="fas fa-star"></i> 8.4
+                            </div>
+                            <div class="streaming-services">
+                                <span class="service-badge hbo-badge">HBO</span>
+                                <span class="service-badge disney-badge">D+</span>
+                            </div>
+                        </div>
+                        <div class="movie-info">
+                            <h3 class="movie-title">Mroczny Rycerz powstaje</h3>
+                            <div class="movie-meta">
+                                <span class="movie-year">2012</span>
+                                <span class="movie-genre">Akcja, Dramat</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="data:image/jpeg;base64,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" alt="Jak rozpętałem II wojnę światową">
+                            <div class="movie-overlay">
+                                <div class="overlay-actions">
+                                    <button class="overlay-btn" onclick="toggleFavorite(this)">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="overlay-btn" onclick="openMovieModal(11)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="rating-badge">
+                                <i class="fas fa-star"></i> 8.3
+                            </div>
+                            <div class="streaming-services">
+                                <span class="service-badge netflix-badge">N</span>
+                                <span class="service-badge apple-badge">A+</span>
+                            </div>
+                        </div>
+                        <div class="movie-info">
+                            <h3 class="movie-title">Jak rozpętałem II wojnę...</h3>
+                            <div class="movie-meta">
+                                <span class="movie-year">1970</span>
+                                <span class="movie-genre">Komedia, Przygodowy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRASL9d0hTKpntJ8mVzcjon3AiDUR9aJQZncg&s" alt="Requiem dla snu">
+                            <div class="movie-overlay">
+                                <div class="overlay-actions">
+                                    <button class="overlay-btn" onclick="toggleFavorite(this)">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="overlay-btn" onclick="openMovieModal(12)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="rating-badge">
+                                <i class="fas fa-star"></i> 7.3
+                            </div>
+                            <div class="streaming-services">
+                                <span class="service-badge netflix-badge">N</span>
+                                <span class="service-badge amazon-badge">PV</span>
+                            </div>
+                        </div>
+                        <div class="movie-info">
+                            <h3 class="movie-title">Requiem dla snu</h3>
+                            <div class="movie-meta">
+                                <span class="movie-year">2000</span>
+                                <span class="movie-genre">Dramat</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="no-results" class="no-results" style="display: none;">
+                    <div class="no-results-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3 class="no-results-text">Nie znaleziono filmów</h3>
+                    <p class="no-results-subtext">Spróbuj zmienić kryteria wyszukiwania lub filtry</p>
+                    <button class="primary-btn" onclick="clearAllFilters()">
+                        <i class="fas fa-broom"></i> Wyczyść wszystkie filtry
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-favorites" class="page-content favorites-page">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-heart"></i> Twoje ulubione filmy
+                </h2>
+                <div class="section-actions">
+                    <button class="secondary-btn" onclick="clearFavorites()" aria-label="Wyczyść ulubione">
+                        <i class="fas fa-trash"></i> Wyczyść listę
+                    </button>
+                    <button class="primary-btn" onclick="exportFavorites()" aria-label="Eksportuj ulubione">
+                        <i class="fas fa-download"></i> Eksportuj
+                    </button>
+                </div>
+            </div>
+
+            <div class="favorites-search">
+                <div class="search-wrapper">
+                    <div class="search-icon" aria-hidden="true">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <input type="text" 
+                           class="search-input" 
+                           placeholder="Wyszukaj w ulubionych..."
+                           aria-label="Wyszukaj w ulubionych"
+                           id="favorites-search">
+                </div>
+            </div>
+
+            <div id="favorites-grid" class="movies-grid">
+            </div>
+
+            <div id="favorites-empty" class="favorites-empty">
+                <div class="favorites-empty-icon">
+                    <i class="fas fa-heart-broken"></i>
+                </div>
+                <h3 class="favorites-empty-text">Brak ulubionych filmów</h3>
+                <p class="favorites-empty-subtext">Dodaj filmy do ulubionych, klikając ikonę serca na karcie filmu</p>
+                <button class="primary-btn" onclick="showPage('home')">
+                    <i class="fas fa-search"></i> Przeglądaj filmy
+                </button>
+            </div>
+        </section>
+
+        <section id="page-chat" class="page-content">
+            <div class="chat-container">
+                <div class="chat-sidebar">
+                    <h3 class="chat-sidebar-title">
+                        <i class="fas fa-comments"></i> Czaty tematyczne
+                    </h3>
+                    <div class="chat-room-list" id="chat-room-list">
+                    </div>
+                    <div class="chat-info">
+                        <p><i class="fas fa-info-circle"></i> Wybierz czat aby dołączyć do dyskusji</p>
+                        <p><small>Wszystkie wiadomości są publiczne i anonimowe</small></p>
+                    </div>
+                </div>
+
+                <div class="chat-main">
+                    <div class="chat-header">
+                        <h3 class="chat-header-title" id="current-chat-title">
+                            <i class="fas fa-hashtag"></i> Wybierz czat
+                        </h3>
+                        <div class="chat-header-actions">
+                            <button class="chat-action-btn" onclick="clearChat()" id="clear-chat-btn" style="display: none;">
+                                <i class="fas fa-broom"></i> Wyczyść
+                            </button>
+                            <button class="chat-action-btn" onclick="toggleChatTheme()">
+                                <i class="fas fa-moon" id="theme-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="chat-notice" id="chat-notice">
+                        <i class="fas fa-info-circle"></i> Czat grupowy – pisz anonimowo, szanuj innych użytkowników. Administrator moderuje treści.
+                    </div>
+
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="welcome-message">
+                            <div class="message system">
+                                <div class="message-header">
+                                    <span class="message-author">System</span>
+                                    <span class="message-time">Teraz</span>
+                                </div>
+                                <div class="message-text">
+                                    Witaj na czacie! Wybierz tematyczny pokój rozmów z panelu po lewej stronie.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-area">
+                        <div class="chat-input-wrapper">
+                            <input type="text" 
+                                   class="chat-input" 
+                                   placeholder="Wybierz czat aby napisać wiadomość..."
+                                   aria-label="Wiadomość na czacie"
+                                   id="chat-input"
+                                   disabled>
+                            <button class="send-message-btn" onclick="sendMessage()" id="send-message-btn" disabled>
+                                <i class="fas fa-paper-plane"></i> Wyślij
+                            </button>
+                        </div>
+                        <div class="chat-options">
+                            <label class="chat-option">
+                                <input type="checkbox" id="auto-scroll" checked>
+                                Auto-przewijanie
+                            </label>
+                            <button class="chat-scroll-btn" onclick="scrollChatToBottom()">
+                                <i class="fas fa-arrow-down"></i> Na dół
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-admin" class="page-content admin-panel">
+        </section>
+    </main>
+
+    <div id="movie-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+    </div>
+
+    <div id="admin-login-modal" class="admin-login-modal" role="dialog" aria-labelledby="admin-login-title" aria-hidden="true">
+    </div>
+
+    <div id="confirm-modal" class="confirm-modal" role="dialog" aria-hidden="true">
+    </div>
+
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Ładowanie...</p>
+    </div>
+
+</body>
+</html>
