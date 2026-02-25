@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLUSFLIX - Movie & TV Show Search Engine</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="font-medium">
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" onclick="showPage('home')" role="button" tabindex="0" aria-label="PLUSFLIX - Home">
+                    <div class="logo-icon" aria-hidden="true">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <h1>PLUSFLIX</h1>
+                </div>
+
+                <nav class="main-nav" role="navigation" aria-label="Main menu">
+                    <a href="#" class="nav-link active" onclick="showPage('home'); return false;" id="nav-home" data-i18n="nav-home">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <a href="#" class="nav-link" onclick="showPage('favorites'); return false;" id="nav-favorites" data-i18n="nav-favorites">
+                        <i class="fas fa-heart"></i> Favorites
+                    </a>
+                    <a href="#" class="nav-link" onclick="showPage('chat'); return false;" id="nav-chat" data-i18n="nav-chat">
+                        <i class="fas fa-comments"></i> Chat
+                    </a>
+                </nav>
+
+                <div class="search-section">
+                    <div class="search-wrapper">
+                        <div class="search-icon" aria-hidden="true">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <input type="text" 
+                               class="search-input" 
+                               placeholder="Search movies or TV shows..."
+                               aria-label="Search movies or TV shows"
+                               id="search-input"
+                               data-i18n-placeholder="search-placeholder">
+                        <button class="clear-btn" onclick="clearSearch()" aria-label="Clear search">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <div class="language-switcher" aria-label="Language switcher">
+                        <button class="lang-btn active" onclick="setLanguage('en')" aria-label="English" title="English" id="lang-en">
+                            <i class="fas fa-language"></i> EN
+                        </button>
+                        <button class="lang-btn" onclick="setLanguage('pl')" aria-label="Polski" title="Polski" id="lang-pl">
+                            <span>PL</span>
+                        </button>
+                        <button class="lang-btn" onclick="setLanguage('es')" aria-label="Español" title="Español" id="lang-es">
+                            <span>ES</span>
+                        </button>
+                    </div>
+                    <div class="font-size-control" aria-label="Font size control">
+                        <button class="font-btn" onclick="setFontSize('small')" aria-label="Small font">A-</button>
+                        <button class="font-btn active" onclick="setFontSize('medium')" aria-label="Medium font">A</button>
+                        <button class="font-btn" onclick="setFontSize('large')" aria-label="Large font">A+</button>
+                    </div>
+                    <button class="admin-btn" onclick="showAdminLogin()" aria-label="Admin panel">
+                        <i class="fas fa-user-cog"></i> Admin
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="container" role="main">
+        <section id="page-home" class="page-content active">
+            <div class="hero">
+                <div class="hero-bg"></div>
+                <div class="hero-content">
+                    <h2 class="hero-title" data-i18n="hero-title">Find your next favorite movie</h2>
+                    <p class="hero-subtitle" data-i18n="hero-subtitle">Browse thousands of movies and TV shows, check availability on streaming platforms and share opinions with other movie fans</p>
+                </div>
+            </div>
+
+            <div class="filters-section">
+                <div class="filters-header">
+                    <h3 class="filters-title" data-i18n="filters-title"><i class="fas fa-filter"></i> Filter results</h3>
+                    <button class="filters-toggle" onclick="toggleFilters()" aria-label="Toggle filters">
+                        <i class="fas fa-chevron-up" id="filters-toggle-icon"></i>
+                    </button>
+                </div>
+                
+                <div id="filters-content" class="filters-content">
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label class="filter-label" data-i18n="platforms-label">
+                                <i class="fas fa-tv"></i> Streaming platforms
+                            </label>
+                            <div class="filter-options">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="platform" value="netflix" onchange="updateFilters()">
+                                    <i class="fab fa-netflix netflix-icon"></i> Netflix
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="platform" value="hbo" onchange="updateFilters()">
+                                    <i class="fas fa-tv hbo-icon"></i> HBO Max
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="platform" value="disney" onchange="updateFilters()">
+                                    <i class="fab fa-disney disney-icon"></i> Disney+
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="platform" value="amazon" onchange="updateFilters()">
+                                    <i class="fab fa-amazon amazon-icon"></i> Prime Video
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="platform" value="apple" onchange="updateFilters()">
+                                    <i class="fab fa-apple apple-icon"></i> Apple TV+
+                                </label>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label" data-i18n="genres-label">
+                                <i class="fas fa-film"></i> Genres
+                            </label>
+                            <div class="filter-options">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="genre" value="action" onchange="updateFilters()">
+                                    <i class="fas fa-explosion"></i> Action
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="genre" value="comedy" onchange="updateFilters()">
+                                    <i class="fas fa-laugh"></i> Comedy
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="genre" value="drama" onchange="updateFilters()">
+                                    <i class="fas fa-masks-theater"></i> Drama
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="genre" value="sci-fi" onchange="updateFilters()">
+                                    <i class="fas fa-robot"></i> Sci-Fi
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="genre" value="thriller" onchange="updateFilters()">
+                                    <i class="fas fa-suspense"></i> Thriller
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="genre" value="crime" onchange="updateFilters()">
+                                    <i class="fas fa-gavel"></i> Crime
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="genre" value="romance" onchange="updateFilters()">
+                                    <i class="fas fa-heart"></i> Romance
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="genre" value="adventure" onchange="updateFilters()">
+                                    <i class="fas fa-compass"></i> Adventure
+                                </label>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label" data-i18n="rating-label">
+                                <i class="fas fa-star"></i> Rating range
+                            </label>
+                            <div class="filter-options rating-filter-options">
+                                <label class="checkbox-label rating-option">
+                                    <input type="radio" name="rating-range" value="any" checked onchange="updateFilters()">
+                                    <span class="rating-stars">
+                                        <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                                    </span>
+                                    <span data-i18n="any-rating">Any rating</span>
+                                </label>
+                                <label class="checkbox-label rating-option">
+                                    <input type="radio" name="rating-range" value="0-1" onchange="updateFilters()">
+                                    <span class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                                    </span>
+                                    <span data-i18n="rating-0-1">0 - 1 star</span>
+                                </label>
+                                <label class="checkbox-label rating-option">
+                                    <input type="radio" name="rating-range" value="1.1-2" onchange="updateFilters()">
+                                    <span class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                                    </span>
+                                    <span data-i18n="rating-1-2">1.1 - 2 stars</span>
+                                </label>
+                                <label class="checkbox-label rating-option">
+                                    <input type="radio" name="rating-range" value="2.1-3" onchange="updateFilters()">
+                                    <span class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                                    </span>
+                                    <span data-i18n="rating-2-3">2.1 - 3 stars</span>
+                                </label>
+                                <label class="checkbox-label rating-option">
+                                    <input type="radio" name="rating-range" value="3.1-4" onchange="updateFilters()">
+                                    <span class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                    </span>
+                                    <span data-i18n="rating-3-4">3.1 - 4 stars</span>
+                                </label>
+                                <label class="checkbox-label rating-option">
+                                    <input type="radio" name="rating-range" value="4.1-5" onchange="updateFilters()">
+                                    <span class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    </span>
+                                    <span data-i18n="rating-4-5">4.1 - 5 stars</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-actions">
+                        <button class="filter-btn secondary" onclick="clearAllFilters()">
+                            <i class="fas fa-broom"></i> <span data-i18n="clear-filters">Clear filters</span>
+                        </button>
+                        <button class="filter-btn primary" onclick="applyFilters()">
+                            <i class="fas fa-check"></i> <span data-i18n="apply-filters">Apply filters</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <div class="section-header">
+                    <h4 class="section-title" data-i18n="latest-productions">
+                        <i class="fas fa-film"></i> Latest productions
+                    </h4>
+                    <div class="section-actions">
+                        <span class="results-count"><span data-i18n="found-movies">Found</span> <span id="results-count">0</span> <span data-i18n="movies">movies</span></span>
+                        <button class="share-btn" onclick="shareResults()" aria-label="Share results">
+                            <i class="fas fa-share-alt"></i> <span data-i18n="share">Share</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="movies-grid" class="movies-grid">
+                </div>
+
+                <div id="no-results" class="no-results" style="display: none;">
+                    <div class="no-results-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3 class="no-results-text" data-i18n="no-results">No movies found</h3>
+                    <p class="no-results-subtext" data-i18n="no-results-subtext">Try changing your search criteria or filters</p>
+                    <button class="primary-btn" onclick="clearAllFilters()">
+                        <i class="fas fa-broom"></i> <span data-i18n="clear-all">Clear all filters</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-favorites" class="page-content favorites-page">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="your-favorites">
+                    <i class="fas fa-heart"></i> Your favorite movies
+                </h2>
+                <div class="section-actions">
+                    <button class="secondary-btn" onclick="clearFavorites()" aria-label="Clear favorites">
+                        <i class="fas fa-trash"></i> <span data-i18n="clear-favorites">Clear list</span>
+                    </button>
+                    <button class="primary-btn" onclick="exportFavorites()" aria-label="Export favorites">
+                        <i class="fas fa-download"></i> <span data-i18n="export">Export</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="favorites-search">
+                <div class="search-wrapper">
+                    <div class="search-icon" aria-hidden="true">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <input type="text" 
+                           class="search-input" 
+                           placeholder="Search in favorites..."
+                           aria-label="Search in favorites"
+                           id="favorites-search"
+                           data-i18n-placeholder="favorites-search-placeholder">
+                </div>
+            </div>
+
+            <div id="favorites-grid" class="movies-grid">
+            </div>
+
+            <div id="favorites-empty" class="favorites-empty">
+                <div class="favorites-empty-icon">
+                    <i class="fas fa-heart-broken"></i>
+                </div>
+                <h3 class="favorites-empty-text" data-i18n="no-favorites">No favorite movies</h3>
+                <p class="favorites-empty-subtext" data-i18n="no-favorites-subtext">Add movies to favorites by clicking the heart icon on the movie card</p>
+                <button class="primary-btn" onclick="showPage('home')">
+                    <i class="fas fa-search"></i> <span data-i18n="browse-movies">Browse movies</span>
+                </button>
+            </div>
+        </section>
+
+        <section id="page-chat" class="page-content">
+            <div class="chat-container">
+                <div class="chat-sidebar">
+                    <h3 class="chat-sidebar-title" data-i18n="chat-rooms">
+                        <i class="fas fa-comments"></i> Topic chats
+                    </h3>
+                    <div class="chat-room-list" id="chat-room-list">
+                    </div>
+                    <div class="chat-info">
+                        <p data-i18n="chat-info"><i class="fas fa-info-circle"></i> Choose a chat to join the discussion</p>
+                        <p><small data-i18n="chat-info-small">All messages are public and anonymous</small></p>
+                    </div>
+                </div>
+
+                <div class="chat-main">
+                    <div class="chat-header">
+                        <h3 class="chat-header-title" id="current-chat-title" data-i18n="select-chat">
+                            <i class="fas fa-hashtag"></i> Select chat
+                        </h3>
+                        <div class="chat-header-actions">
+                            <button class="chat-action-btn" onclick="clearChat()" id="clear-chat-btn" style="display: none;" data-i18n="clear-chat" title="Clear chat">
+                                <i class="fas fa-broom"></i>
+                            </button>
+                            <button class="chat-action-btn" onclick="toggleChatTheme()" title="Toggle theme">
+                                <i class="fas fa-moon" id="theme-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="chat-notice" id="chat-notice" data-i18n="chat-notice">
+                        <i class="fas fa-info-circle"></i> Group chat - write anonymously, respect other users. Administrator moderates content.
+                    </div>
+
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="welcome-message">
+                            <div class="message system">
+                                <div class="message-header">
+                                    <span class="message-author">System</span>
+                                    <span class="message-time">Now</span>
+                                </div>
+                                <div class="message-text" data-i18n="welcome-chat">
+                                    Welcome to the chat! Choose a topic room from the panel on the left.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-area">
+                        <div class="chat-input-wrapper">
+                            <input type="text" 
+                                   class="chat-input" 
+                                   placeholder="Select a chat to write a message..."
+                                   aria-label="Chat message"
+                                   id="chat-input"
+                                   disabled
+                                   data-i18n-placeholder="chat-placeholder">
+                            <button class="send-message-btn" onclick="sendMessage()" id="send-message-btn" disabled>
+                                <i class="fas fa-paper-plane"></i> <span data-i18n="send">Send</span>
+                            </button>
+                        </div>
+                        <div class="chat-options">
+                            <label class="chat-option">
+                                <input type="checkbox" id="auto-scroll" checked>
+                                <span data-i18n="auto-scroll">Auto-scroll</span>
+                            </label>
+                            <button class="chat-scroll-btn" onclick="scrollChatToBottom()">
+                                <i class="fas fa-arrow-down"></i> <span data-i18n="go-to-bottom">Go to bottom</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-admin" class="page-content admin-panel">
+            <div class="admin-header">
+                <h2 class="admin-title" data-i18n="admin-panel">
+                    <i class="fas fa-user-cog"></i> Admin Panel
+                </h2>
+                <div class="admin-actions">
+                    <span class="admin-status" id="admin-status">
+                        <i class="fas fa-circle"></i> <span data-i18n="logged-in">Logged in</span>
+                    </span>
+                    <button class="admin-logout-btn" onclick="logoutAdmin()">
+                        <i class="fas fa-sign-out-alt"></i> <span data-i18n="logout">Logout</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="admin-tabs">
+                <button class="admin-tab active" onclick="showAdminTab('movies')">
+                    <i class="fas fa-film"></i> <span data-i18n="movies-tab">Movies</span>
+                </button>
+                <button class="admin-tab" onclick="showAdminTab('comments')">
+                    <i class="fas fa-comment"></i> <span data-i18n="comments-tab">Comments</span>
+                </button>
+                <button class="admin-tab" onclick="showAdminTab('chat-mods')">
+                    <i class="fas fa-comments"></i> <span data-i18n="chat-mod-tab">Chat Moderation</span>
+                </button>
+                <button class="admin-tab" onclick="showAdminTab('settings')">
+                    <i class="fas fa-cog"></i> <span data-i18n="settings-tab">Settings</span>
+                </button>
+            </div>
+
+            <div id="admin-tab-movies" class="admin-tab-content active">
+                <div class="admin-sections">
+                    <div class="admin-section">
+                        <h3 class="admin-section-title" data-i18n="add-movie">
+                            <i class="fas fa-plus-circle"></i> Add new movie
+                        </h3>
+                        <form class="admin-form" id="add-movie-form" onsubmit="addNewMovie(event)">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="movie-title" class="form-label" data-i18n="title">Title *</label>
+                                    <input type="text" id="movie-title" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="movie-year" class="form-label" data-i18n="year">Year *</label>
+                                    <input type="number" id="movie-year" class="form-input" min="1900" max="2030" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="movie-duration" class="form-label" data-i18n="duration">Duration</label>
+                                    <input type="text" id="movie-duration" class="form-input" placeholder="e.g., 2h 28min">
+                                </div>
+                                <div class="form-group">
+                                    <label for="movie-director" class="form-label" data-i18n="director">Director</label>
+                                    <input type="text" id="movie-director" class="form-input">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="movie-description" class="form-label" data-i18n="description">Description *</label>
+                                <textarea id="movie-description" class="form-input" rows="4" required></textarea>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="movie-genres" class="form-label" data-i18n="genres">Genres</label>
+                                    <input type="text" id="movie-genres" class="form-input" placeholder="separate with commas">
+                                </div>
+                                <div class="form-group">
+                                    <label for="movie-platforms" class="form-label" data-i18n="platforms">Platforms</label>
+                                    <input type="text" id="movie-platforms" class="form-input" placeholder="separate with commas">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="movie-poster" class="form-label" data-i18n="poster-url">Poster URL</label>
+                                <input type="url" id="movie-poster" class="form-input" placeholder="https://example.com/poster.jpg">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="movie-backdrop" class="form-label" data-i18n="backdrop-url">Backdrop URL</label>
+                                <input type="url" id="movie-backdrop" class="form-input" placeholder="https://example.com/backdrop.jpg">
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="reset" class="secondary-btn">
+                                    <i class="fas fa-undo"></i> <span data-i18n="clear">Clear</span>
+                                </button>
+                                <button type="submit" class="primary-btn">
+                                    <i class="fas fa-save"></i> <span data-i18n="add-movie">Add movie</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="admin-section">
+                        <h3 class="admin-section-title" data-i18n="all-movies">
+                            <i class="fas fa-list"></i> All movies
+                        </h3>
+                        <div class="admin-search">
+                            <input type="text" 
+                                   class="form-input" 
+                                   placeholder="Search movies..."
+                                   id="admin-movie-search"
+                                   oninput="searchAdminMovies()"
+                                   data-i18n-placeholder="search-movies">
+                        </div>
+                        <div class="table-container">
+                            <table class="admin-table" id="admin-movies-table">
+                                <thead>
+                                    <tr>
+                                        <th data-i18n="title">Title</th>
+                                        <th data-i18n="year">Year</th>
+                                        <th data-i18n="genres">Genres</th>
+                                        <th data-i18n="rating">Rating</th>
+                                        <th data-i18n="actions">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-movies-list">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-info">
+                            <span id="admin-movies-count">0</span> <span data-i18n="movies-in-database">movies in database</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="admin-tab-comments" class="admin-tab-content">
+                <div class="admin-section">
+                    <h3 class="admin-section-title" data-i18n="recent-comments">
+                        <i class="fas fa-comment-dots"></i> Recent comments
+                    </h3>
+                    <div class="comments-moderations">
+                        <div class="moderation-filters">
+                            <select class="form-input" id="comment-filter" onchange="filterComments()">
+                                <option value="all" data-i18n="all-comments">All comments</option>
+                                <option value="reported" data-i18n="reported">Reported</option>
+                                <option value="spoiler" data-i18n="spoilers">With spoilers</option>
+                                <option value="pending" data-i18n="pending">Pending</option>
+                            </select>
+                            <button class="secondary-btn" onclick="refreshComments()">
+                                <i class="fas fa-sync"></i> <span data-i18n="refresh">Refresh</span>
+                            </button>
+                        </div>
+                        <div id="admin-comments-list">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="admin-tab-chat-mods" class="admin-tab-content">
+                <div class="admin-section">
+                    <h3 class="admin-section-title" data-i18n="chat-moderation">
+                        <i class="fas fa-comment-slash"></i> Chat Moderation
+                    </h3>
+                    <div class="chat-moderation">
+                        <div class="active-chats">
+                            <h4>
+                                <i class="fas fa-broadcast-tower"></i> <span data-i18n="active-chats">Active chats</span>
+                            </h4>
+                            <div id="active-chats-list"></div>
+                        </div>
+                        <div class="reported-messages">
+                            <h4>
+                                <i class="fas fa-flag"></i> <span data-i18n="reported-messages">Reported messages</span>
+                            </h4>
+                            <div id="reported-messages-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="admin-tab-settings" class="admin-tab-content">
+                <div class="admin-section">
+                    <h3 class="admin-section-title" data-i18n="system-settings">
+                        <i class="fas fa-cogs"></i> System Settings
+                    </h3>
+                    <form class="admin-form" id="settings-form">
+                        <div class="form-group">
+                            <label class="form-label" data-i18n="general-settings">General settings</label>
+                            <div class="settings-options">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="auto-moderate" checked>
+                                    <span data-i18n="auto-moderation">Auto-moderation of comments</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="chat-enabled" checked>
+                                    <span data-i18n="chat-enabled">Chat active</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="ratings-enabled" checked>
+                                    <span data-i18n="ratings-enabled">Rating system active</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="items-per-page" class="form-label" data-i18n="items-per-page">Items per page</label>
+                            <input type="number" id="items-per-page" class="form-input" min="5" max="50" value="12">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="default-sort" class="form-label" data-i18n="default-sort">Default sorting</label>
+                            <select id="default-sort" class="form-input">
+                                <option value="newest" data-i18n="newest">Newest</option>
+                                <option value="rating" data-i18n="highest-rated">Highest rated</option>
+                                <option value="title" data-i18n="title-az">Title A-Z</option>
+                            </select>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="secondary-btn" onclick="resetSettings()">
+                                <i class="fas fa-undo"></i> <span data-i18n="reset-defaults">Reset to defaults</span>
+                            </button>
+                            <button type="submit" class="primary-btn">
+                                <i class="fas fa-save"></i> <span data-i18n="save-settings">Save settings</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Movie Modal -->
+    <div id="movie-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-hero" id="modal-hero">
+                <div class="modal-hero-overlay">
+                    <h2 id="modal-title" class="modal-title">Movie Title</h2>
+                    <div class="modal-meta">
+                        <span id="modal-year">2023</span>
+                        <span id="modal-duration">2h 28min</span>
+                        <span id="modal-genre">Action, Sci-Fi</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3 class="modal-section-title" data-i18n="description">
+                        <i class="fas fa-align-left"></i> Description
+                    </h3>
+                    <p id="modal-description" class="modal-description">Movie description...</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3 class="modal-section-title" data-i18n="cast">
+                        <i class="fas fa-users"></i> Cast
+                    </h3>
+                    <p id="modal-cast" class="modal-cast"></p>
+                </div>
+
+                <div class="modal-section">
+                    <h3 class="modal-section-title" data-i18n="director">
+                        <i class="fas fa-user"></i> Director
+                    </h3>
+                    <p id="modal-director" class="modal-director"></p>
+                </div>
+
+                <div class="modal-section">
+                    <h3 class="modal-section-title" data-i18n="available-on">
+                        <i class="fas fa-tv"></i> Available on
+                    </h3>
+                    <div class="platforms-grid" id="platforms-grid"></div>
+                    <div id="no-platforms" class="no-platforms" style="display: none;">
+                        <i class="fas fa-exclamation-triangle"></i> <span data-i18n="no-platforms">No information about availability on streaming platforms</span>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3 class="modal-section-title" data-i18n="ratings">
+                        <i class="fas fa-star"></i> Ratings
+                    </h3>
+                    <div class="rating-section">
+                        <div class="rating-display">
+                            <div class="avg-rating">
+                                <div class="avg-rating-value" id="avg-rating">0.0</div>
+                                <div class="avg-rating-label" data-i18n="average-rating">Average rating</div>
+                                <div class="avg-rating-count" id="rating-count">0 <span data-i18n="ratings">ratings</span></div>
+                            </div>
+                            <div class="rating-bars" id="rating-bars"></div>
+                        </div>
+                        <div class="user-rating">
+                            <div class="user-rating-label" data-i18n="your-rating">Your rating:</div>
+                            <div class="rating-input-wrapper">
+                                <div class="stars" id="rating-stars"></div>
+                                <div class="rating-slider-wrapper">
+                                    <input type="range" min="1" max="10" value="5" class="rating-slider" id="rating-slider">
+                                    <div class="rating-value-display" id="rating-value">5.0</div>
+                                </div>
+                                <button class="primary-btn" onclick="submitRating()" id="submit-rating-btn">
+                                    <i class="fas fa-star"></i> <span data-i18n="rate">Rate</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comments-section">
+                    <h3 class="modal-section-title" data-i18n="comments">
+                        <i class="fas fa-comments"></i> Comments
+                        <span class="comments-count" id="comments-count">(0)</span>
+                    </h3>
+                    <form class="comment-form" id="comment-form" onsubmit="submitComment(event)">
+                        <textarea class="comment-textarea" 
+                                  placeholder="Write a comment..."
+                                  aria-label="Comment content"
+                                  id="comment-text"
+                                  maxlength="500"
+                                  data-i18n-placeholder="write-comment"></textarea>
+                        <div class="comment-options">
+                            <div class="comment-options-left">
+                                <label class="spoiler-checkbox">
+                                    <input type="checkbox" id="spoiler-checkbox">
+                                    <i class="fas fa-eye-slash"></i> <span data-i18n="contains-spoilers">Contains spoilers</span>
+                                </label>
+                                <span class="char-count" id="char-count">0/500</span>
+                            </div>
+                            <button type="submit" class="primary-btn" id="submit-comment-btn">
+                                <i class="fas fa-paper-plane"></i> <span data-i18n="add-comment">Add comment</span>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="comments-list" id="comments-list"></div>
+                    <div class="comments-empty" id="comments-empty">
+                        <i class="fas fa-comment-slash"></i>
+                        <p data-i18n="no-comments">No comments yet. Be the first to comment!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="admin-login-modal" class="admin-login-modal" role="dialog" aria-labelledby="admin-login-title" aria-hidden="true">
+        <div class="admin-login-content">
+            <h3 id="admin-login-title" class="admin-login-title" data-i18n="admin-login">
+                <i class="fas fa-user-cog"></i> Admin Login
+            </h3>
+            <form class="admin-login-form" id="admin-login-form" onsubmit="loginAdmin(event)">
+                <div class="form-group">
+                    <label for="admin-username" class="form-label" data-i18n="username">Username</label>
+                    <input type="text" id="admin-username" class="form-input" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="admin-password" class="form-label" data-i18n="password">Password</label>
+                    <input type="password" id="admin-password" class="form-input" required autocomplete="current-password">
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="remember-me">
+                        <span data-i18n="remember-me">Remember me</span>
+                    </label>
+                </div>
+                <div class="admin-login-buttons">
+                    <button type="button" class="secondary-btn" onclick="hideAdminLogin()">
+                        <i class="fas fa-times"></i> <span data-i18n="cancel">Cancel</span>
+                    </button>
+                    <button type="submit" class="primary-btn">
+                        <i class="fas fa-sign-in-alt"></i> <span data-i18n="login">Login</span>
+                    </button>
+                </div>
+                <div class="login-note">
+                    <i class="fas fa-info-circle"></i> <span data-i18n="admin-note">Access only for authorized administrators</span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal" class="confirm-modal" role="dialog" aria-hidden="true">
+        <div class="confirm-content">
+            <h3 class="confirm-title" id="confirm-title"></h3>
+            <p class="confirm-message" id="confirm-message"></p>
+            <div class="confirm-buttons">
+                <button class="secondary-btn" id="confirm-cancel">
+                    <i class="fas fa-times"></i> <span data-i18n="cancel">Cancel</span>
+                </button>
+                <button class="primary-btn" id="confirm-ok">
+                    <i class="fas fa-check"></i> <span data-i18n="confirm">Confirm</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p class="loading-text" data-i18n="loading">Loading...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
